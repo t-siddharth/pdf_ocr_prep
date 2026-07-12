@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdfocr"
+version = "0.1.0"
+description = "Detect scanned/image-only PDFs and add a searchable text layer plus a markdown sidecar."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Siddharth" }]
+dependencies = ["pypdf>=5.0,<6"]
+
+[project.scripts]
+pdfocr = "pdfocr.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "reportlab>=4",
+    "img2pdf>=0.5",
+    "pillow>=10.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pdfocr"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
